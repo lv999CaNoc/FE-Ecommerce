@@ -101,7 +101,7 @@ export const Login = () => {
             </Form.Item>
           </Form>
           <p className="text-center channel-sell-body-right-msg">
-            Bạn mới biết đến PeerMarket?{" "}
+            Bạn mới biết đến GlobeBuy?{" "}
             <Link href="/auth/register">
               <span>Đăng ký</span>
             </Link>
@@ -109,7 +109,7 @@ export const Login = () => {
         </Col>
       </Row>
       <p className="middle pt-17">
-        © 2015 - Bản quyền thuộc về Công ty TNHH PeerMarket
+        © 2023 - Nhóm sinh viên Khóa 17 - KMA
       </p>
     </div>
   );

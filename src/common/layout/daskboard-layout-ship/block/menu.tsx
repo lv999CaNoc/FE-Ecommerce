@@ -57,7 +57,7 @@ const Menu = (props) => {
       >
         <div className="brand">
           <div className="logo">
-            {!collapsed && <h1 className="text-white">PeerMarket</h1>}
+            {!collapsed && <h1 className="text-white">GlobeBuy</h1>}
           </div>
         </div>
         <ScrollBar

@@ -33,11 +33,17 @@ export const Cart = () => {
       });
   }, []);
   useEffect(() => {
-    const carts = getCartsByUserId(user.id).subscribe((res) => {
-      setListCart(res.data);
-    });
-    subscription.add(carts);
+    if (user.id){
+      const carts = getCartsByUserId(user.id).subscribe((res) => {
+        setListCart(res.data);
+      });
+      subscription.add(carts);
+    }
   }, [user, isRender]);
+
+  useEffect(()=>{
+    console.log("checked product id in cart: "+listChecked);
+  }, [listChecked])
 
   const onPayment = () => {
     if (listChecked.length === 0) {
@@ -157,7 +163,7 @@ export const Cart = () => {
                     style={{
                       height: 100,
                       width: 100,
-                      backgroundImage: `url(${item.productResponse.images[0].urls[0]})`,
+                      backgroundImage: `url("${item.productResponse.images[0].urls[0]}")`,
                     }}
                   ></div>
                   <div className="ml-10 mt-30">

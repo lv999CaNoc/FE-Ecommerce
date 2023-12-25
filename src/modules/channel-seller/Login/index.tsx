@@ -45,8 +45,7 @@ export const LoginChannelSell = () => {
         <Col span={8} className="channel-sell-body-left">
           <h2>Bán hàng chuyên nghiệp</h2>
           <p>
-            Quản lý shop của bạn một cách hiệu quả hơn trên PeerMarket với
-            PeerMarket - Kênh Người bán
+            Quản lý shop của bạn một cách hiệu quả hơn trên GlobeBuy
           </p>
           <img src="/assets/images/channel-seller/image1.png" width={"100%"} />
         </Col>
@@ -84,7 +83,7 @@ export const LoginChannelSell = () => {
             </Form.Item>
           </Form>
           <p className="text-center channel-sell-body-right-msg">
-            Bạn mới biết đến PeerMarket?{" "}
+            Bạn mới biết đến GlobeBuy?{" "}
             <Link href="/channel-seller/register">
               <span>Đăng ký</span>
             </Link>

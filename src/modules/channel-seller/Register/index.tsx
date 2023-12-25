@@ -26,7 +26,7 @@ export const RegisterChannelSell = () => {
     <Row className="channel-sell-body-register">
       <Row className="container d-flex justify-content-around px-5 channel-sell-body">
         <Col span={7} className="channel-sell-body-left">
-          <h4>PeerMarket Việt Nam</h4>
+          <h4>GlobeBuy Việt Nam</h4>
           <h2>Trở thành người bán ngay hôm nay</h2>
           <div className="d-flex mb-2">
             <GlobalOutlined className="icon" />
@@ -89,7 +89,7 @@ export const RegisterChannelSell = () => {
             </Form.Item>
           </Form>
           <p className="text-center channel-sell-body-right-msg">
-            Bạn đã có tài khoản PeerMarket?{" "}
+            Bạn đã có tài khoản GlobeBuy?{" "}
             <Link href="/channel-seller/login">
               <span>Đăng nhập</span>
             </Link>

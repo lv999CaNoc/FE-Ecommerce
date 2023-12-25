@@ -39,10 +39,12 @@ export const Payment = () => {
   }, []);
 
   useEffect(() => {
-    const addresses = getAddressByUserId(userSelected.id).subscribe((res) => {
-      setAddressNow(res.data[0]);
-    });
-    subscription.add(addresses);
+    if (userSelected.id){
+      const addresses = getAddressByUserId(userSelected.id).subscribe((res) => {
+        setAddressNow(res.data[0]);
+      });
+      subscription.add(addresses);
+    }
   }, []);
 
   useEffect(() => {
@@ -82,7 +84,9 @@ export const Payment = () => {
       route.push("/account/purchase");
       return;
     }
-    if (listTransport.length === 0) return;
+    if (listTransport.length === 0) 
+      return;
+
     const data = productSelected.map((item, index) => {
       return {
         id: index + 1,
@@ -91,7 +95,7 @@ export const Payment = () => {
         transport: listTransport[0],
       };
     });
-    setOrderPayment(data);
+    setOrderPayment(data);    
   }, [productSelected, listTransport]);
 
   const onCreateTransport = (values: any, id: number) => {
@@ -144,10 +148,12 @@ export const Payment = () => {
       (res) => {
         const listOrder = res.data.map((elm) => elm.id);
         const data = {
-          content_pay: "Thanh Toan Hoa Don Mua Tai PeerMarket",
+          content_pay: "Thanh Toan Hoa Don Mua Tai GlobeBuy ",
           list_id_order: listOrder,
           amount: totalPrice() * 100,
         };
+        console.log(data);
+        
         if (paymentNow.id === 1) {
           route.push("/account/purchase");
           return;
@@ -191,7 +197,7 @@ export const Payment = () => {
             >
               <path
                 d="M6 3.2c1.506 0 2.727 1.195 2.727 2.667 0 1.473-1.22 2.666-2.727 2.666S3.273 7.34 3.273 5.867C3.273 4.395 4.493 3.2 6 3.2zM0 6c0-3.315 2.686-6 6-6s6 2.685 6 6c0 2.498-1.964 5.742-6 9.933C1.613 11.743 0 8.498 0 6z"
-                fill-rule="evenodd"
+                fillRule="evenodd"
               ></path>
             </svg>
             <p className="fontsz-18 m-0">Địa Chỉ Nhận Hàng</p>
@@ -238,8 +244,9 @@ export const Payment = () => {
           </Col>
         </Row>
         {orderPayment.length > 0 &&
-          orderPayment.map((item) => (
+          orderPayment.map((item, index) => (
             <div
+              key={index}
               style={{ height: "auto", backgroundColor: "white" }}
               className="pt-20 mb-20"
             >
@@ -253,13 +260,13 @@ export const Payment = () => {
               </div>
               <Row
                 className="pb-10 plr-25"
-                style={{ borderBottom: "2px dashed rgba(0,0,0,.09);" }}
+                style={{ borderBottom: "2px dashed rgba(0,0,0,.09)" }}
               >
                 <Col span={10} className="fontsz-18 flex">
                   <img
                     className="image ph-h-40 ph-w-40"
                     style={{
-                      backgroundImage: `url(${item.order.productResponse.images[0].urls[0]})`,
+                      backgroundImage: `url("${item.order.productResponse.images[0].urls[0]}")`,
                     }}
                   />
                   <p className="fontsz-14 over-flow p-10 ph-h-30">
@@ -287,13 +294,13 @@ export const Payment = () => {
                 className="plr-25"
                 style={{
                   backgroundColor: "#fafdff",
-                  borderBottom: "2px dashed rgba(0,0,0,.09);",
+                  borderBottom: "2px dashed rgba(0,0,0,.09)",
                 }}
               >
                 <Col
                   span={9}
                   className="fontsz-18 flex ptb-15"
-                  style={{ borderRight: "2px dashed rgba(0,0,0,.09);" }}
+                  style={{ borderRight: "2px dashed rgba(0,0,0,.09)" }}
                 >
                   <p className="fontsz-14 mt-10 mr-15">Lời nhắn :</p>
                   <Input
@@ -369,30 +376,30 @@ export const Payment = () => {
             </Row>
             <div style={{ backgroundColor: "#fffefb" }} className="ptb-20">
               <Row className="plr-25 mb-10">
-                <Col span={20}></Col>
-                <Col span={2} className="fontsz-14">
+                <Col span={15}></Col>
+                <Col span={4} className="fontsz-14">
                   Tổng tiền hàng
                 </Col>
-                <Col span={2} className="text-end">
+                <Col span={3} className="text-end">
                   ₫{totalPriceProduct()}
                 </Col>
               </Row>
               <Row className="plr-25 mb-10">
-                <Col span={20}></Col>
-                <Col span={2} className="fontsz-14">
+                <Col span={15}></Col>
+                <Col span={4} className="fontsz-14">
                   Phí vận chuyển
                 </Col>
-                <Col span={2} className="text-end">
+                <Col span={3} className="text-end">
                   ₫{totalTransport()}
                 </Col>
               </Row>
               <Row className="plr-25 mb-10">
-                <Col span={20}></Col>
-                <Col span={2} className="fontsz-14 pt-7">
+                <Col span={15}></Col>
+                <Col span={4} className="fontsz-14 pt-7">
                   Tổng thanh toán
                 </Col>
                 <Col
-                  span={2}
+                  span={3}
                   className="text-end fontsz-22"
                   style={{ color: "#ee4d2d" }}
                 >

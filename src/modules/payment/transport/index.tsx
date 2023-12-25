@@ -49,10 +49,10 @@ export const Transport: React.FC<CollectionCreateFormProps> = ({
       }}
     >
       <p className="fontsz-14 mb-0" style={{ color: "#929292" }}>
-        KÊNH VẬN CHUYỂN LIÊN KẾT VỚI PEERMARKET
+        KÊNH VẬN CHUYỂN LIÊN KẾT VỚI GLOBEBUY
       </p>
       <p className="fontsz-12" style={{ color: "#BBBBBB" }}>
-        Bạn có thể theo dõi đơn hàng trên ứng dụng PeerMaket khi chọn một trong
+        Bạn có thể theo dõi đơn hàng trên ứng dụng GlobeBuy khi chọn một trong
         các đơn vị vận chuyển:
       </p>
       {listTransport.map((trans, index) => (

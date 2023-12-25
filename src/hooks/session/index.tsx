@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { checkUserLogin, clearUserCredential } from '@app/services/auth';
+import { checkUserLogin, clearUserCredential, getAccessToken } from '@app/services/auth';
 import { getProfile } from '@app/api/user/get-profile';
 import { userSessionSubject } from './session-subject';
 
@@ -14,9 +14,9 @@ function getUserInfo() {
 
   isFetchingUserData = true;
 
-  // getProfile().subscribe(res => {
-  //   userSessionSubject.next(res.data);
-  // });
+  getProfile({jwt: getAccessToken()}).subscribe(res => {
+    userSessionSubject.next(res.data);
+  });
 }
 
 export interface UserSession {

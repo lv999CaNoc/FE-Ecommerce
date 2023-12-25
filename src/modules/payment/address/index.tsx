@@ -31,10 +31,12 @@ export const Address: React.FC<CollectionCreateFormProps> = ({
   const userSelected = useSelector(getUser);
   const [isRender, setIsRender] = useState<boolean>(false);
   useEffect(() => {
-    const addresses = getAddressByUserId(userSelected.id).subscribe((res) => {
-      setListAddress(res.data);
-    });
-    subscription.add(addresses);
+    if (userSelected.id){
+      const addresses = getAddressByUserId(userSelected.id).subscribe((res) => {
+        setListAddress(res.data);
+      });
+      subscription.add(addresses);
+    }
   }, [isRender]);
 
   useEffect(() => {

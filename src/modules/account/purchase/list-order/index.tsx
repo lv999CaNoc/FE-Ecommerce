@@ -36,7 +36,9 @@ function ListOrder(props) {
     if (user.id) {
       const listOrder = listOrderByUserIdAndStatus(user.id, type).subscribe(
         (res) => {
-          setListOrders(res.data);
+          // console.log(res.data);
+          
+          setListOrders(res.data.reverse());
         },
         (err) => {}
       );
@@ -65,7 +67,7 @@ function ListOrder(props) {
 
   const onPayment = (item: any) => {
     const data = {
-      content_pay: "Thanh Toan Hoa Don Mua Tai PeerMarket",
+      content_pay: "Thanh Toan Hoa Don Mua Tai GlobeBuy",
       list_id_order: [item.orderId],
       amount: (item.cart.cart.total + item.transport.price) * 100,
     };
@@ -139,7 +141,7 @@ function ListOrder(props) {
                   <div
                     className="image ph-w-80 ph-h-80"
                     style={{
-                      backgroundImage: `url(${cart.productResponse.images[0].urls[0]})`,
+                      backgroundImage: `url("${cart.productResponse.images[0].urls[0]}")`,
                     }}
                   ></div>
                   <div className="pt-7 pl-10">

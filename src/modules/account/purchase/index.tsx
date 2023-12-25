@@ -5,6 +5,7 @@ import ListOrder from "./list-order";
 
 export const AccountPurchase = () => {
   const onChange = (key: string) => {
+    // console.log(key);
   };
 
   const items: TabsProps["items"] = [

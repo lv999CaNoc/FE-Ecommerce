@@ -17,8 +17,7 @@ const StartShop = () => {
         <img src="/assets/images/checked.png" />
         <h5 className="mt-3">Đăng ký thành công</h5>
         <p className="start-shop-msg mb-4">
-          Hãy đăng bán sản phẩm đầu tiên để khởi động hành trình bán hàng cùng
-          PeerMarket nhé!
+          Hãy đăng bán sản phẩm đầu tiên để khởi động hành trình bán hàng cùng GlobeBuy nhé!
         </p>
         <Button
           className="button-danger"
@@ -50,12 +49,14 @@ export const Onboarding = () => {
     setCurrent(current - 1);
   };
   useEffect(()=>{
-    const getShop = getShopByUserId(user.id).subscribe((res)=>{
-      setCurrent(2);
-    }, (err) => {
-      console.log(err);
-    })
-    subscription.add(getShop);
+    if (user.id){
+      const getShop = getShopByUserId(user.id).subscribe((res)=>{
+        setCurrent(2);
+      }, (err) => {
+        console.log(err);
+      })
+      subscription.add(getShop);
+    }
   },[])
   
   const steps = [

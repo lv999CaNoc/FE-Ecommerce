@@ -85,77 +85,83 @@ export const ViewProduct = () => {
   } = router;
 
   useEffect(() => {
-    setIsLoading(true);
-    const getProduct = getProductById(+id).subscribe(
-      (res) => {
-        getProductByShopId(res.data.product.shop.id).subscribe(res =>{
-          setNumProductByShop(res.data.length);
-        })
-        const { product, images, sizes, colors } = res.data;
-        const imageList = images[0]["urls"];
-        if (colors[0]) {
-          const colorList = colors[0]["colors"].map((col, index) => {
-            return {
-              id: index + 1,
-              name: `Màu ${col}`,
-            };
-          });
-          setListColor(colorList);
+    // load product images and shop information
+    if (id){
+      setIsLoading(true);
+      const getProduct = getProductById(+id).subscribe(
+        (res) => {
+          getProductByShopId(res.data.product.shop.id).subscribe(res =>{
+            setNumProductByShop(res.data.length);
+          })
+          const { product, images, sizes, colors } = res.data;
+          const imageList = images[0]["urls"];
+          if (colors[0]) {
+            const colorList = colors[0]["colors"].map((col, index) => {
+              return {
+                id: index + 1,
+                name: `Màu ${col}`,
+              };
+            });
+            setListColor(colorList);
+          }
+          if (sizes[0]) {
+            const sizeList = sizes[0]["sizes"].map((size, index) => {
+              return {
+                id: index + 1,
+                name: `Size ${size}`,
+              };
+            });
+            setListSize(sizeList);
+          }
+          setProduct(product);
+          setListImage(imageList);
+          setIsLoading(false);
+        },
+        (err) => {
+          setIsLoading(false);
         }
-        if (sizes[0]) {
-          const sizeList = sizes[0]["sizes"].map((size, index) => {
-            return {
-              id: index + 1,
-              name: `Size ${size}`,
-            };
-          });
-          setListSize(sizeList);
-        }
-        setProduct(product);
-        setListImage(imageList);
-        setIsLoading(false);
-      },
-      (err) => {
-        setIsLoading(false);
-      }
-    );
-    subscription.add(getProduct);
+      );
+      subscription.add(getProduct);
+    }
   }, [id]);
 
   useEffect(() => {
-    setIsLoading(true);
-    const lists = listCommentsByProductId(+id).subscribe((res) => {
-      setListComment(res.data);
-      setCommentsRate(res.data);
-      setListProductReview([
-        {
-          id: 0,
-          title: "Tất cả",
-        },
-        {
-          id: 5,
-          title: `5 Sao (${res.data.filter((el) => el.rate === 5).length})`,
-        },
-        {
-          id: 4,
-          title: `4 Sao (${res.data.filter((el) => el.rate === 4).length})`,
-        },
-        {
-          id: 3,
-          title: `3 Sao (${res.data.filter((el) => el.rate === 3).length})`,
-        },
-        {
-          id: 2,
-          title: `2 Sao (${res.data.filter((el) => el.rate === 2).length})`,
-        },
-        {
-          id: 1,
-          title: `1 Sao (${res.data.filter((el) => el.rate === 1).length})`,
-        },
-      ]);
-      setIsLoading(false);
-    });
-    subscription.add(lists);
+    // load comment
+    if (id){
+      setIsLoading(true);
+      const lists = listCommentsByProductId(+id).subscribe((res) => {
+        setListComment(res.data);
+        setCommentsRate(res.data);
+        setListProductReview([
+          {
+            id: 0,
+            title: "Tất cả",
+          },
+          {
+            id: 5,
+            title: `5 Sao (${res.data.filter((el) => el.rate === 5).length})`,
+          },
+          {
+            id: 4,
+            title: `4 Sao (${res.data.filter((el) => el.rate === 4).length})`,
+          },
+          {
+            id: 3,
+            title: `3 Sao (${res.data.filter((el) => el.rate === 3).length})`,
+          },
+          {
+            id: 2,
+            title: `2 Sao (${res.data.filter((el) => el.rate === 2).length})`,
+          },
+          {
+            id: 1,
+            title: `1 Sao (${res.data.filter((el) => el.rate === 1).length})`,
+          },
+        ]);
+        setIsLoading(false);
+      });
+      subscription.add(lists);
+    }
   }, [id]);
 
   useEffect(() => {
@@ -229,7 +235,7 @@ export const ViewProduct = () => {
     const cartRequest = {
       color: colorValue?.name,
       size: sizeValue?.name,
-      userId: id,
+      userId: user.id,
       productId: product.id,
       quantity: num,
       total: product.price * num,
@@ -268,13 +274,13 @@ export const ViewProduct = () => {
             style={{ backgroundColor: "white" }}
           >
             <p className="fontsz-18 ml-60 mb-0 ptb-10">{product.type.name}</p>
-            <Row className="flex justify-content-between">
+            <Row className="flex justify-content-between pb-30">
               <Col className="ml-30">
                 <div className="ml-30 ph-relative" style={{ width: "350px" }}>
                   <div
                     className="image cursor-pointer"
                     style={{
-                      backgroundImage: `url(${listImage[imageIndex]})`,
+                      backgroundImage: `url("${listImage[imageIndex]}")`,
                       width: "300px",
                       height: "400px",
                     }}
@@ -303,10 +309,11 @@ export const ViewProduct = () => {
                   </p>
                   {listImage.map((image, index) => (
                     <div
+                      key={index}
                       onClick={() => setImageIndex(index)}
                       className="image cursor-pointer mr-10"
                       style={{
-                        backgroundImage: `url(${image})`,
+                        backgroundImage: `url("${image}")`,
                         width: "80px",
                         height: "80px",
                         border: index === imageIndex && "1px solid red",
@@ -384,7 +391,9 @@ export const ViewProduct = () => {
                         <PlusOutlined className="pb-5" />
                       </p>
                     </div>
-                    <p className="pt-5 pointer">{product.quantity} sản phẩm có sẵn</p>
+                    <p className="pt-5 pointer">
+                      {product.quantity} sản phẩm có sẵn
+                    </p>
                   </div>
                   {listColor.length > 0 && (
                     <div className="d-flex mt-20" style={{ width: 600 }}>
@@ -396,15 +405,15 @@ export const ViewProduct = () => {
                           return (
                             <p
                               className="mr-10 middle pointer"
-                              onClick={() => setIdColor(el.id)}
+                              onClick={() => setIdColor(index)}
                               key={index}
                               style={{
                                 border: `1px solid ${
-                                  el.id === idColor
+                                  index === idColor
                                     ? "#ee4d2d"
                                     : "rgba(0,0,0,.09)"
                                 }`,
-                                color: el.id === idColor ? "#ee4d2d" : "black",
+                                color: index === idColor ? "#ee4d2d" : "black",
                                 height: 25,
                                 width: 100,
                               }}
@@ -426,15 +435,15 @@ export const ViewProduct = () => {
                           return (
                             <p
                               className="mr-10 middle pointer"
-                              onClick={() => setIdSize(el.id)}
+                              onClick={() => setIdSize(index)}
                               key={index}
                               style={{
                                 border: `1px solid ${
-                                  el.id === idSize
+                                  index === idSize
                                     ? "#ee4d2d"
                                     : "rgba(0,0,0,.09)"
                                 }`,
-                                color: el.id === idSize ? "#ee4d2d" : "black",
+                                color: index === idSize ? "#ee4d2d" : "black",
                                 height: 25,
                                 width: 100,
                               }}
@@ -712,9 +721,9 @@ export const ViewProduct = () => {
                 <Rate
                   disabled
                   allowHalf
-                  defaultValue={rateAver}
+                  value={rateAver}
                   style={{ color: "#ee4d2d" }}
-                  className="fontsz-20 ml-5"
+                  className="fontsz-16 ml-5"
                 />
               </div>
 

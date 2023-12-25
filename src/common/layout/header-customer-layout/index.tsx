@@ -35,9 +35,9 @@ export function HeaderCustomerLayout(props: ChannelSellerLayoutProps) {
     return (
       <div style={{ width: 500 }}>
         {data.length > 0 ? (
-          <>
-            {data.slice(0, 5).map((item) => (
-              <div className="d-flex justify-content-between">
+          <div>
+            {data.slice(0, 5).map((item, index) => (
+              <div key={index} className="d-flex justify-content-between">
                 <div className="d-flex">
                   <div
                     className="image-bg-detail"
@@ -90,7 +90,7 @@ export function HeaderCustomerLayout(props: ChannelSellerLayoutProps) {
                 Xem Giỏ Hàng
               </Button>
             </div>
-          </>
+          </div>
         ) : (
           <p className="middle">Chưa có sản phẩm nào thêm vào giỏ hàng.</p>
         )}
@@ -99,7 +99,8 @@ export function HeaderCustomerLayout(props: ChannelSellerLayoutProps) {
   };
 
   useEffect(() => {
-    getProfile({ jwt: getAccessToken() })
+    const jwt = getAccessToken();
+    jwt && getProfile({ jwt })
       .toPromise()
       .then((profile) => {
         setUser(profile.data);
@@ -204,7 +205,7 @@ export function HeaderCustomerLayout(props: ChannelSellerLayoutProps) {
         <Row className="container d-flex justify-content-between">
           <img
             onClick={() => router.push("/")}
-            src="/assets/images/logo/logo-header-customer.png"
+            src="/assets/images/logo/logo-header-customer.svg"
             height={50}
             className="cursor-pointer"
           />

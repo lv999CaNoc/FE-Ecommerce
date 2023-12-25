@@ -17,29 +17,28 @@ interface ChannelSellerLayoutProps {
 }
 
 export function ChannelSellerRegister(props: ChannelSellerLayoutProps) {
-  const { logout } = useSession();
+  const { logout, userInfo } = useSession();
   const items: MenuProps["items"] = [
     {
       label: <a onClick={logout}>Đăng xuất</a>,
       key: "0",
     },
   ];
-  const user = useSelector(getUser);
   return (
     <section className="vh-100 channel-sell">
       <Row className=" w-100 py-3 channel-sell-header">
         <Row className="container d-flex justify-content-between">
           <div className="d-flex">
             <Link href={"/"}>
-              <img className="cursor-pointer"  src="/assets/images/logo/logo2.svg" />
+              <img className="cursor-pointer"  src="/assets/images/logo/logo.svg" />
             </Link>
-            <h4 className="pt-16">Đăng ký trở thành người bán PeerMarket</h4>
+            <h4 className="pt-16">Đăng ký trở thành người bán trên Globe Buy.</h4>
           </div>
           <div className="mt-16">
             <Dropdown menu={{ items }} trigger={["click"]}>
               <a onClick={(e) => e.preventDefault()}>
                 <Space>
-                  {user.username}
+                  Hi, {userInfo?.username}
                   <DownOutlined />
                 </Space>
               </a>

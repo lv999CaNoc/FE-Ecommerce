@@ -26,7 +26,7 @@ export const PaymentMethod: React.FC<CollectionCreateFormProps> = ({
   return (
     <Modal
       open={open}
-      title="Chọn đơn vị vận chuyển"
+      title="Chọn đơn phương thức thanh toán"
       okText="Hoàn Thành"
       cancelText="Trở Lại"
       onCancel={onCancel}

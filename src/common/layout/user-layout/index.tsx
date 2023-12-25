@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CrmCMSLayout } from "..";
 import { HeaderCustomerLayout } from "../header-customer-layout";
 import { Col, Row } from "antd";
 import { UserOutlined, EditOutlined, ProfileOutlined } from "@ant-design/icons";
 import Link from "next/link";
+import { useSelector } from "react-redux";
+import { getUser } from "@app/redux/users/user-slice";
+import { getProfile } from "@app/api/user/get-profile";
+import { getAccessToken } from "@app/services/auth";
 interface ChannelSellerLayoutProps {
   children:
     | React.ReactElement<any, string | React.JSXElementConstructor<any>>
@@ -11,6 +15,18 @@ interface ChannelSellerLayoutProps {
 }
 
 export default function UserLayout(props: ChannelSellerLayoutProps) {
+  const userInfo = useSelector(getUser);
+  const [user, setUser] = useState<any>({});
+
+  useEffect(() => {
+    getProfile({ jwt: getAccessToken() })
+      .toPromise()
+      .then((profile) => {
+        setUser(profile.data);
+        // console.log(profile.data);
+      });
+  }, []);
+
   return (
     <div>
       <HeaderCustomerLayout>
@@ -25,13 +41,25 @@ export default function UserLayout(props: ChannelSellerLayoutProps) {
                   style={{ border: "1px solid #ccc", borderRadius: "50%" }}
                   className="ph-h-50 ph-w-50"
                 >
-                  <UserOutlined
-                    className="middle fontsz-25 p-11"
-                    style={{ color: "#999" }}
-                  />
+                  {user.photo ? (
+                    <img
+                      src={user.photo}
+                      alt="Avatar"
+                      style={{
+                        borderRadius: "50%",
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    />
+                  ) : (
+                    <UserOutlined
+                      className="middle fontsz-25 p-11"
+                      style={{ color: "#999" }}
+                    />
+                  )}
                 </div>
                 <div className="ml-15 mt-5">
-                  <p className="font-bold fontsz-16 m-0">HoangPhan</p>
+                  <p className="font-bold fontsz-16 m-0">{user.username}</p>
                   <div
                     className="d-flex cursor-pointer"
                     style={{ color: "#999" }}

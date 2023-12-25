@@ -16,7 +16,7 @@ export function ChannelSellerLayout(props: ChannelSellerLayoutProps) {
       <Row className=" w-100 py-3 channel-sell-header">
         <Row className="container d-flex">
         <Link href={"/"}>
-              <img className="cursor-pointer"  src="/assets/images/logo/logo2.svg" />
+              <img className="cursor-pointer"  src="/assets/images/logo/logo.svg" />
             </Link>
           <h4 className="pt-16">{checkPathReturnTitle(router.asPath)}</h4>
         </Row>

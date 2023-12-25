@@ -48,7 +48,7 @@ export const Comment = ({ open, onCreate, onCancel }) => {
             },
           ]}
           name="comment"
-          label="Comment"
+          label="Bình luận"
         >
           <Input type="textarea" />
         </Form.Item>

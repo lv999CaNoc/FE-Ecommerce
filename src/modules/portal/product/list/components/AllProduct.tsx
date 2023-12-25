@@ -116,7 +116,7 @@ function AllProduct(props: PropsProduct) {
               <Link href={item.link} className="cursor-pointer">
                 <div
                   className="image cursor-pointer"
-                  style={{ backgroundImage: `url(${item.url})` }}
+                  style={{ backgroundImage: `url("${item.url}")` }}
                 ></div>
               </Link>
               <div className="p-10 pb-0">

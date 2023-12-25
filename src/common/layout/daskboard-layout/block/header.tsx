@@ -1,15 +1,13 @@
-import { Avatar, Button, Form, Input, Menu } from 'antd';
-import React, { Fragment, useCallback } from 'react';
-import {MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { useSession } from '@app/hooks/session';
-import { openModal, ModalProps, confirm } from '@app/common/modal';
-import { useSubscription } from '@app/hooks/subscription';
 import { changePass } from '@app/api/auth/change-pass';
+import { ModalProps, confirm, openModal } from '@app/common/modal';
 import { SUCCESS_CODE } from '@app/const/common.const';
+import { useSession } from '@app/hooks/session';
+import { useSubscription } from '@app/hooks/subscription';
+import { Avatar, Button, Form, Input, Menu } from 'antd';
+import { Fragment, useCallback } from 'react';
 import { toast } from 'react-toastify';
 
 const { SubMenu } = Menu
-
 
 function Header(props) {
   const subscription = useSubscription();
@@ -17,7 +15,6 @@ function Header(props) {
   const handleConfirmLogout = useCallback(() => {
     confirm({ content: 'Bạn có muốn đăng nhập lại?', titleSubmitBtn: 'Đăng xuất' }).subscribe(answer => {
       if (!answer) return;
-
       logout();
     })
   }, []);
@@ -73,6 +70,7 @@ function Header(props) {
   } 
   const {toggleCollapsed, collapsed} = props;
   const {logout, userInfo} = useSession();
+
   const openModalChangePass = () => {
     const modalChange = openModal(ModalChangePass,{ dialogClassName: 'de-modal-md modal-custom', closeButton: true});
     modalChange.afterClosed().subscribe(data=>{
@@ -82,6 +80,7 @@ function Header(props) {
       onChangePass(data);
     })
   };
+
   return (
     <Menu key="user" mode="horizontal" className={`header ${collapsed ? 'collapsed' : ''}`} style={{height: '72px'}}>
       <li>

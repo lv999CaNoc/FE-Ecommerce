@@ -82,7 +82,7 @@ export const Register = () => {
             </Form.Item>
           </Form>
           <p className="text-center channel-sell-body-right-msg">
-            Bạn đã có tài khoản PeerMarket?{" "}
+            Bạn đã có tài khoản GlobeBuy?{" "}
             <Link href="/auth/login">
               <span>Đăng nhập</span>
             </Link>
@@ -90,7 +90,7 @@ export const Register = () => {
         </Col>
       </Row>
       <p className="middle pt-17">
-        © 2015 - Bản quyền thuộc về Công ty TNHH PeerMarket
+        © 2023 - Nhóm sinh viên Khóa 17 - KMA
       </p>
     </div>
   );

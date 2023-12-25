@@ -81,7 +81,7 @@ export const ListProduct = () => {
                   <div
                     className="display-product-home"
                     style={{
-                      backgroundImage: `url(${product.images[0].urls[0]})`,
+                      backgroundImage: `url("${product.images[0].urls[0]}")`,
                     }}
                   ></div>
                   <p className="p-10 over-flow2">{product.product.title}</p>

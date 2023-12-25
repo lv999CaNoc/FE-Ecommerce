@@ -56,7 +56,7 @@ const Menu = (props) => {
       >
         <div className="brand">
           <div className="logo">
-            {!collapsed && <h1 className="text-white cursor-pointer" onClick={() => router.push("/")}>PeerMarket</h1>}
+            {!collapsed && <h1 className="text-white cursor-pointer" onClick={() => router.push("/")}>GlobeBuy</h1>}
           </div>
         </div>
         <ScrollBar
