@@ -18,6 +18,10 @@ export const Register = () => {
   const useDispatch = useAppDispatch();
   const subscription = useSubscription();
   const onFinish = (values: any) => {
+    values = {
+      ...values,
+      isSeller: false
+    }
     const registerAccount = register(values).subscribe((res)=>{
       router.push("/auth/login")
     },(err)=>{

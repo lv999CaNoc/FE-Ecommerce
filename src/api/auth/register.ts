@@ -6,6 +6,7 @@ interface RegisterParam {
     password: string;
     email: string;
     name: string;
+    isSeller: boolean;
 }
 
 export const register = (params: RegisterParam) => {

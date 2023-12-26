@@ -15,6 +15,10 @@ export const RegisterChannelSell = () => {
   const subscription = useSubscription();
   const router = useRouter();
   const onFinish = (values: any) => {
+    values = {
+      ...values,
+      isSeller: true
+    }
     const registerAccount = register(values).subscribe((res)=>{
       router.push("/channel-seller/login")
     },(err)=>{
