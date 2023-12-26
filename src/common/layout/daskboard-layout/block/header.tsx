@@ -95,8 +95,8 @@ function Header(props) {
               <span style={{ color: '#999', marginRight: 4 }}>
                 Hi,
               </span>
-              <span>{userInfo?.name}</span>
-              <Avatar style={{ marginLeft: 8 }} src={userInfo?.avatar} />
+              <span>{userInfo?.username}</span>
+              <Avatar style={{ marginLeft: 8 }} src={userInfo?.photo || "https://cdn-icons-png.flaticon.com/512/4880/4880676.png"} />
             </Fragment>
           }
         >

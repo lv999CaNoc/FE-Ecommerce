@@ -178,10 +178,10 @@ export function HeaderCustomerLayout(props: ChannelSellerLayoutProps) {
               placement="bottomLeft"
               className="dropdown-header"
             >
-              <p className="p-0 m-0 color-white fontsz-16 cursor-pointer d-flex">
+              <div className="p-0 m-0 color-white fontsz-16 cursor-pointer">
                 <UserOutlined className="pt-3 mr-5" />
                 <span>{user.username}</span>
-              </p>
+              </div>
             </Dropdown>
           ) : (
             <div className="d-flex fontsz-14" style={{ color: "white" }}>
@@ -249,7 +249,7 @@ export function HeaderCustomerLayout(props: ChannelSellerLayoutProps) {
               </p>
             </Popover>
           </div>
-        </Row>
+      </Row>
       </Row>
       <Row
         style={{

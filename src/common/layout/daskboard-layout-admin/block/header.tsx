@@ -96,7 +96,7 @@ function Header(props) {
               <span style={{ color: '#999', marginRight: 4 }}>
                 Hi,
               </span>
-              <span>{userInfo?.name}</span>
+              <span>{userInfo?.username}</span>
               <Avatar style={{ marginLeft: 8 }} src={userInfo?.avatar} />
             </Fragment>
           }

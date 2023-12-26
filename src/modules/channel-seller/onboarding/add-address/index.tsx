@@ -54,7 +54,7 @@ export const CollectionCreateForm: React.FC<CollectionCreateFormProps> = ({
           .validateFields()
           .then((values) => {
             form.resetFields();
-            if (data.id) {
+            if (data?.id) {
               onUpdate(values,data.id);
               return;
             }

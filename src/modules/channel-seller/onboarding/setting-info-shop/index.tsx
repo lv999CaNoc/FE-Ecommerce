@@ -87,10 +87,26 @@ const SettingInfoShop = ({ onSave }) => {
                 >
                   {address?.phone ? (
                     <div className="text-start">
-                      <p className="mb-0">{address.name_receiver}</p>
-                      <p className="mb-0">{address.phone}</p>
-                      <p className="mb-0">{address.address}</p>
-                      <p
+                      <div
+                        style={{
+                          borderLeft: "4px solid #ee4d2d",
+                        }}
+                        className="ptb-10 flex justify-content-between cursor-pointer mb-5"
+                      >
+                        <div className="pl-20 pt-10">
+                          <p className="mb-0">
+                            {address.name_receiver}{" "}
+                            <span>{`(+84) ${address.phone}`}</span>
+                          </p>
+                          <p
+                            className="fontsz-14 over-flow"
+                            style={{ color: "#929292" }}
+                          >
+                            {address.address}
+                          </p>
+                        </div>
+                      </div>
+                      <Button
                         className="mb-0"
                         style={{ cursor: "pointer", color: "#1890FF" }}
                         onClick={() => {
@@ -98,7 +114,7 @@ const SettingInfoShop = ({ onSave }) => {
                         }}
                       >
                         Chỉnh sửa
-                      </p>
+                      </Button>
                     </div>
                   ) : (
                     <Button
@@ -106,7 +122,9 @@ const SettingInfoShop = ({ onSave }) => {
                         setOpen(true);
                       }}
                     >
-                      <PlusOutlined /> Thêm
+                      <div style={{ alignItems: "center", color: "#1890FF" }}>
+                        <PlusOutlined className="fontsz-13 mr-5" /> Thêm
+                      </div>
                     </Button>
                   )}
                 </Form.Item>

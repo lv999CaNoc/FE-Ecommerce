@@ -3,28 +3,46 @@ import { getProfile } from "@app/api/user/get-profile";
 import { CrmCMSLayout } from "@app/common/layout";
 import { SUCCESS_CODE } from "@app/const/common.const";
 import { useAppDispatch } from "@app/hooks/redux/useAppDispatch";
+import { useSession } from "@app/hooks/session";
 import { useSubscription } from "@app/hooks/subscription";
 import { addUser } from "@app/redux/users/user-slice";
-import { saveUserCredential } from "@app/services/auth";
+import { getAccessToken, saveUserCredential } from "@app/services/auth";
 import { Button, Col, Form, Input, Row } from "antd";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 
 export const LoginChannelSell = () => {
   const router = useRouter();
   const useDispatch = useAppDispatch();
   const subscription = useSubscription();
+
+  useEffect(()=> {
+    const jwt = getAccessToken();
+    jwt &&  getProfile({ jwt}).subscribe(
+      (res) => {
+        res.data.role.id === 3 && router.push("/channel-seller/onboarding");
+      },
+      (err)=>{
+        console.log(err);       
+      }
+    )
+  }, []);
+
   const onFinish = (values: any) => {
     const loginSub = login(values).subscribe(
       (res:any) => {
         if (res.status==="OK") {
-          saveUserCredential(res.data.token);
-          getProfile({ jwt:res.data.token }).subscribe(
+          saveUserCredential(res.data.token); 
+          getProfile({ jwt: res.data.token }).subscribe(
             (res) => {
-              router.push("/channel-seller/onboarding");
-              useDispatch(addUser(res.data))
+              if (res.data.role.id === 3) {
+                router.push("/channel-seller/onboarding");
+              } else {
+                toast.warning("Không phải tài khoản người bán hàng.");
+              }
+              useDispatch(addUser(res.data));
             },
             (err) => {
               console.log(err);
