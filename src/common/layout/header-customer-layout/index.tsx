@@ -100,7 +100,7 @@ export function HeaderCustomerLayout(props: ChannelSellerLayoutProps) {
 
   useEffect(() => {
     const jwt = getAccessToken();
-    jwt && getProfile({ jwt })
+    jwt && getProfile()
       .toPromise()
       .then((profile) => {
         setUser(profile.data);

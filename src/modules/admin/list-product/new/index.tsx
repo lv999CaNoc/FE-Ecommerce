@@ -36,7 +36,7 @@ export const ProductNew = () => {
   const [listType, setListType] = useState([]);
   const [shop, setShop] = useState<any>({});
   useEffect(() => {
-    getProfile({ jwt: getAccessToken() })
+    getProfile()
       .toPromise()
       .then((profile) => {
         getShopByUserId(profile.data.id)

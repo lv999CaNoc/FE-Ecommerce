@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { CrmCMSLayout } from "..";
-import { HeaderCustomerLayout } from "../header-customer-layout";
-import { Col, Row } from "antd";
-import { UserOutlined, EditOutlined, ProfileOutlined } from "@ant-design/icons";
-import Link from "next/link";
-import { useSelector } from "react-redux";
-import { getUser } from "@app/redux/users/user-slice";
+import { EditOutlined, ProfileOutlined, UserOutlined } from "@ant-design/icons";
 import { getProfile } from "@app/api/user/get-profile";
-import { getAccessToken } from "@app/services/auth";
+import { Col, Row } from "antd";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { HeaderCustomerLayout } from "../header-customer-layout";
 interface ChannelSellerLayoutProps {
   children:
     | React.ReactElement<any, string | React.JSXElementConstructor<any>>
@@ -15,11 +11,10 @@ interface ChannelSellerLayoutProps {
 }
 
 export default function UserLayout(props: ChannelSellerLayoutProps) {
-  const userInfo = useSelector(getUser);
   const [user, setUser] = useState<any>({});
 
   useEffect(() => {
-    getProfile({ jwt: getAccessToken() })
+    getProfile()
       .toPromise()
       .then((profile) => {
         setUser(profile.data);

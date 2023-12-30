@@ -21,7 +21,8 @@ export const Login = () => {
       (res: any) => {
         if (res.status === "OK") {
           saveUserCredential(res.data.token);
-          getProfile({ jwt: res.data.token }).subscribe(
+          getProfile()
+          .subscribe(
             (res) => {
               const {
                 query: { callback },

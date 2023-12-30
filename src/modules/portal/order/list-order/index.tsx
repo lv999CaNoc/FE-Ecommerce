@@ -18,7 +18,7 @@ function ListOrder(props) {
   const [listOrders, setListOrders] = useState<any>(data);
   const router = useRouter();
   useEffect(() => {
-    getProfile({ jwt: getAccessToken() })
+    getProfile()
       .toPromise()
       .then((profile) => {
         getShopByUserId(profile.data.id)

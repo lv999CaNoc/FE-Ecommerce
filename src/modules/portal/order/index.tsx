@@ -31,7 +31,7 @@ export const ListOrderShop = () => {
   }, [value,shop]);
 
   useEffect(() => {
-    getProfile({ jwt: getAccessToken() })
+    getProfile()
       .toPromise()
       .then((profile) => {
         getShopByUserId(profile.data.id)

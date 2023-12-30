@@ -19,7 +19,7 @@ export const ListOrderAdmin = () => {
   };
 
   useEffect(() => {
-    getProfile({ jwt: getAccessToken() })
+    getProfile()
       .toPromise()
       .then((profile) => {
         if (profile.data.role.id === 2) {

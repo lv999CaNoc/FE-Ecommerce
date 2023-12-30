@@ -25,7 +25,7 @@ function ListOrder(props) {
   const [listComments, setListComments] = useState<any>([]);
   const router = useRouter();
   useEffect(() => {
-    getProfile({ jwt: getAccessToken() })
+    getProfile()
       .toPromise()
       .then((profile) => {
         setUser(profile.data);

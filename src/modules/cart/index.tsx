@@ -26,7 +26,7 @@ export const Cart = () => {
   const router = useRouter();
   const [isRender, setIsRender] = useState<boolean>(false);
   useEffect(() => {
-    getProfile({ jwt: getAccessToken() })
+    getProfile()
       .toPromise()
       .then((profile) => {
         setUser(profile.data);

@@ -200,7 +200,7 @@ export const ViewProduct = () => {
   };
 
   useEffect(() => {
-    getProfile({ jwt: getAccessToken() })
+    getProfile()
       .toPromise()
       .then((profile) => {
         setUser(profile.data);

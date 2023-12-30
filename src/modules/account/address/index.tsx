@@ -20,7 +20,7 @@ export const AccountAddress = () => {
   const [isRender, setIsRender] = useState<boolean>(false);
   const subscription = useSubscription();
   useEffect(() => {
-    getProfile({ jwt: getAccessToken() })
+    getProfile()
       .toPromise()
       .then((profile) => {
         setUser(profile.data);

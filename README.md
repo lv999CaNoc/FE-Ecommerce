@@ -41,3 +41,17 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 | Tên chủ thẻ | NGUYEN VAN A |
 | Ngày phát hành | 07/15 |
 | Mật khẩu OTP | 123456 |
+
+## Account test
+
+pwd:
+Globebuy@1234
+
+| Email           | Role     |
+|-----------------|----------|
+| admin@gmail.com | ADMIN    |
+| user@gmail.com  | CUSTOMER |
+| shop1@gmail.com | SELLER   |
+| shop2@gmail.com | SELLER   |
+| shop3@gmail.com | SELLER   |
+| ship@gmail.com  | CARRIER  |

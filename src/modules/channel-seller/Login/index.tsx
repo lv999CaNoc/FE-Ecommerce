@@ -20,7 +20,8 @@ export const LoginChannelSell = () => {
 
   useEffect(()=> {
     const jwt = getAccessToken();
-    jwt &&  getProfile({ jwt}).subscribe(
+    jwt &&  getProfile()
+    .subscribe(
       (res) => {
         res.data.role.id === 3 && router.push("/channel-seller/onboarding");
       },
@@ -35,7 +36,7 @@ export const LoginChannelSell = () => {
       (res:any) => {
         if (res.status==="OK") {
           saveUserCredential(res.data.token); 
-          getProfile({ jwt: res.data.token }).subscribe(
+          getProfile().subscribe(
             (res) => {
               if (res.data.role.id === 3) {
                 router.push("/channel-seller/onboarding");

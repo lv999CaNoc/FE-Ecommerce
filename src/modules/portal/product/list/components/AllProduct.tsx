@@ -28,7 +28,7 @@ function AllProduct(props: PropsProduct) {
   const [total, setTotal] = useState<number>(0);
   useEffect(() => {
     if (type !== LIST_TYPE.OUT_OF_STOCK) {
-      getProfile({ jwt: getAccessToken() })
+      getProfile()
         .toPromise()
         .then((profile) => {
           getShopByUserId(profile.data.id)
