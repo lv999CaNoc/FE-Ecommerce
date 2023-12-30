@@ -1,4 +1,4 @@
-export const TRADEMARK = [
+export const BRAND = [
   { value: "No brand", label: "No brand" },
   { value: "ADAM STORE", label: "ADAM STORE" },
   { value: "ALOHA", label: "ALOHA" },
@@ -98,7 +98,7 @@ export const LIST_SELECT = [
         label: "Thương hiệu",
         name: "trade_mark",
         message: "Vui lòng chọn thương hiệu.",
-        options: TRADEMARK,
+        options: BRAND,
       },
       {
         label: "Phong cách",

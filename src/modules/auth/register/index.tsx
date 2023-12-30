@@ -48,7 +48,7 @@ export const Register = () => {
           >
             <Form.Item
               style={{ marginBottom: 30 }}
-              name="name"
+              name="fullname"
               rules={[{ required: true, message: "Vui lòng nhập đầy đủ tên!" }]}
             >
               <Input placeholder="Tên đây đủ" />

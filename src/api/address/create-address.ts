@@ -4,7 +4,7 @@ import { Http } from "@app/services/http";
 interface AddressParam {
     address: string;
     phone: string;
-    name_receiver: string;
+    nameReceiver: string;
     userId:number
 }
 

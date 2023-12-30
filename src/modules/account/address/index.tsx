@@ -53,8 +53,8 @@ export const AccountAddress = () => {
   };
 
   const onUpdate = (data: any, id: number) => {
-    const req = { ...data, userId: id };
-    updateAddress(req).subscribe(
+    const req = { ...data, userId: user.id };
+    updateAddress(req, id).subscribe(
       (res) => {
         toast.success("Sửa địa chỉ thành công");
         setIsOpen(false);

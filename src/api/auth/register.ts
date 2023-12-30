@@ -5,7 +5,7 @@ interface RegisterParam {
     username: string;
     password: string;
     email: string;
-    name: string;
+    fullname: string;
     isSeller: boolean;
 }
 
